@@ -38,7 +38,10 @@ In your terminal, navigate to the directory containing your Terraform configurat
 ```
 terraform init
 ```
-
+## to confirm once
+```
+terraform plan
+```
 This command initializes the Terraform working directory, downloading any necessary provider plugins.
 
 ## Apply the Configuration
