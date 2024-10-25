@@ -74,10 +74,10 @@ availability_zone = "ap-south-1a"
 ami_id            = "ami-12345678"        # Replace with a valid AMI ID
 instance_type     = "t2.micro"
 key_pair          = "your-key-pair-name"  # Replace with your key pair name
-
-#### Module: VPC
-
 ```
+#### Module: VPC
+```
+
 module "vpc" {
   source            = "./modules/vpc"         # Path to the VPC module
   cidr_block        = var.cidr_block          # Passes CIDR block as input to the module
@@ -86,6 +86,7 @@ module "vpc" {
 }
 ```
 #### Module: Security Group
+
 ```
 module "security_group" {
   source = "./modules/security_group"         # Path to the security_group module
