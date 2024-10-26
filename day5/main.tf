@@ -1,4 +1,3 @@
-# Define the AWS provider configuration.
 provider "aws" {
   region = "ap-south-1"  # Replace with your desired AWS region.
 }
@@ -8,7 +7,7 @@ variable "cidr" {
 }
 
 resource "aws_key_pair" "example" {
-  key_name   = "terraform_key_pair"  # Replace with your desired key name
+  key_name   = "jaya1"  # Replace with your desired key name
   public_key = file("~/.ssh/id_rsa.pub")  # Replace with the path to your public key file
 }
 
@@ -73,9 +72,9 @@ resource "aws_security_group" "webSg" {
 }
 
 resource "aws_instance" "server" {
-  ami                    = "ami-0522ab6e1ddcc7055"
+  ami                    = "ami-0dee22c13ea7a9a67"  # Replace with your preferred AMI ID
   instance_type          = "t2.micro"
-  key_name      = aws_key_pair.example.key_name
+  key_name               = aws_key_pair.example.key_name
   vpc_security_group_ids = [aws_security_group.webSg.id]
   subnet_id              = aws_subnet.sub1.id
 
@@ -86,20 +85,24 @@ resource "aws_instance" "server" {
     host        = self.public_ip
   }
 
-  # File provisioner to copy a file from local to the remote EC2 instance
+  # File provisioner to copy the HTML file from local to the remote EC2 instance
   provisioner "file" {
-    source      = "app.py"  # Replace with the path to your local file
-    destination = "/home/ubuntu/app.py"  # Replace with the path on the remote instance
+    source      = "index.html"    # Local HTML file
+    destination = "/home/ubuntu/index.html"  # Path on the remote instance
   }
 
   provisioner "remote-exec" {
     inline = [
       "echo 'Hello from the remote instance'",
       "sudo apt update -y",  # Update package lists (for ubuntu)
-      "sudo apt-get install -y python3-pip",  # Example package installation
-      "cd /home/ubuntu",
-      "sudo pip3 install flask",
-      "nohup sudo python3 app.py > app.log 2>&1 &",
+      "sudo apt-get install -y docker.io",  # Install Docker
+      "sudo systemctl start docker",  # Start Docker service
+      "sudo systemctl enable docker",  # Enable Docker service on boot
+      "echo 'FROM nginx:latest' > /home/ubuntu/Dockerfile",  # Create Dockerfile for Nginx
+      "echo 'COPY index.html /usr/share/nginx/html/index.html' >> /home/ubuntu/Dockerfile",  # Copy HTML file
+      "sudo docker build -t my-nginx /home/ubuntu/",  # Build Docker image
+      "sudo docker run -d -p 80:80 my-nginx"  # Run Nginx container
     ]
   }
 }
+
