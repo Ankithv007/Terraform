@@ -30,7 +30,10 @@ terraform import aws_instance.my_instance i-0b937d3e18efa42aa
 #### Check the State: Use:
 ```
 terraform state list
-``` 
+```
+```
+terraform plan
+```
 ### now change the filed little bit it will give a statefile 
 - agin modify your main.tf
 ```
