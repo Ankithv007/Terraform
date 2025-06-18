@@ -135,6 +135,7 @@ Gain an overview of HashiCorp Vault, a powerful tool for secret management and d
 Learn how to integrate Terraform with Vault to manage sensitive data securely. Discover how Vault can be used to store and distribute secrets within configurations.
 ---
 
+```bash
 ## modules
 terraform-infra/
 ├── environments/
@@ -188,3 +189,4 @@ terraform-infra/
 │
 ├── provider.tf                 # Common provider config (optional if each env has one)
 └── README.md                   # Project documentation
+```

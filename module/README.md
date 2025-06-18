@@ -5,6 +5,7 @@ This repository defines a modular and environment-specific infrastructure-as-cod
 
 ## 📁 Project Structure
 
+`
 terraform-infra/
 ├── environments/
 │   ├── dev/
@@ -57,7 +58,7 @@ terraform-infra/
 │
 ├── provider.tf                 # Common provider config (optional if each env has one)
 └── README.md                   # Project documentation
-
+`
 ## 🌐 Environments
 
 Each environment (`dev`, `prod`) has its own:
