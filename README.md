@@ -133,3 +133,58 @@ Gain an overview of HashiCorp Vault, a powerful tool for secret management and d
 #### Integrating Terraform with Vault for Secrets
 
 Learn how to integrate Terraform with Vault to manage sensitive data securely. Discover how Vault can be used to store and distribute secrets within configurations.
+---
+
+## modules
+terraform-infra/
+├── environments/
+│   ├── dev/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── terraform.tfvars
+│   │   └── backend.tf          # Remote state backend for dev
+│
+│   └── prod/
+│       ├── main.tf
+│       ├── variables.tf
+│       ├── terraform.tfvars
+│       └── backend.tf          # Remote state backend for prod
+│
+├── modules/
+│   ├── vpc/
+│   │   ├── main.tf             # aws_vpc
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│
+│   ├── subnets/
+│   │   ├── main.tf             # aws_subnet (public/private)
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│
+│   ├── internet_gateway/
+│   │   ├── main.tf             # aws_internet_gateway
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│
+│   ├── nat_gateway/
+│   │   ├── main.tf             # aws_nat_gateway & elastic IP
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│
+│   ├── route_tables/
+│   │   ├── main.tf             # aws_route_table, routes, associations
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│
+│   ├── security_groups/
+│   │   ├── main.tf             # aws_security_group rules
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│
+│   └── ec2/
+│       ├── main.tf             # aws_instance for bastion or app
+│       ├── variables.tf
+│       └── outputs.tf
+│
+├── provider.tf                 # Common provider config (optional if each env has one)
+└── README.md                   # Project documentation
