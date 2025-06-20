@@ -42,13 +42,3 @@ variable "name_prefix" {
   type        = string
   description = "Prefix to use in naming AWS resources"
 }
-
-variable "public_subnet_id" {
-  type        = string
-  description = "Public subnet ID for Bastion host"
-}
-
-variable "private_subnet_id" {
-  type        = string
-  description = "Private subnet ID for App server"
-}

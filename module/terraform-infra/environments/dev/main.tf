@@ -33,6 +33,11 @@ module "nat_gateway" {
   igw_id            = module.internet_gateway.igw_id
   name_prefix       = var.name_prefix
 }
+# Dynamo DB ( for lock the state file)
+module "dynamodb_lock" {
+  source     = "../../modules/dynamodb_table"
+  table_name = "${var.name_prefix}-tf-locks"
+}
 
 
 # Route Tables

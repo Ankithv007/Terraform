@@ -73,12 +73,12 @@ module "ec2" {
 
   public_subnet_ids_map = {
     public-a = module.subnets.public_subnet_ids[0]
-    public-b = module.subnets.public_subnet_ids[1]
+    # public-b = module.subnets.public_subnet_ids[1]
   }
 
   private_subnet_ids_map = {
     private-a = module.subnets.private_subnet_ids[0]
-    private-b = module.subnets.private_subnet_ids[1]
+    # private-b = module.subnets.private_subnet_ids[1]
   }
 }
 
